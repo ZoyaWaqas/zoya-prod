@@ -24,17 +24,15 @@
         - start httpd
         - enabled firewalld
         - disabling selinux
-
-     - name: create file
+     - name: create
        file:
-        path: /home/admin/tmp/helloworld
+        path: /tmp/helloworld
         state: touch
-       
 
      - name: copy files
        copy:
-        src: /home/admin/tmp/helloworld
-        dest: /home/admin/tmp/ "{{ item }}"
+        src: /tmp/helloworld
+        dest: /tmp "{{ item }}"
        loop: "{{ users }}"
        
 
