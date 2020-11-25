@@ -26,12 +26,7 @@
         - disabling selinux
    
 
-     - name: copy files
-       copy:
-        src: /tmp/helloworld
-        dest: /tmp "{{ item }}"
-       loop: "{{ users }}"
-       
+ 
 
      - name: lin in file
        lineinfile:
