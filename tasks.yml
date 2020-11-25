@@ -3,8 +3,8 @@
    hosts: all
    vars:
      users:
-      - bc
-      - cd
+      - cc
+      - dd
      packages:
       - httpd
       - firewalld
@@ -27,15 +27,16 @@
 
      - name: create file
        file:
-        path: /tmp/helloworld
+        path: /home/admin/tmp/helloworld
         state: touch
-       when: ansible_host == "zoya-vm1-linoop.us"
+       
 
      - name: copy files
        copy:
-        src: /tmp/helloworld
-        dest: /tmp/ "{{ item }}"
-        loop: "{{ users }}"
+        src: /home/admin/tmp/helloworld
+        dest: /home/admin/tmp/ "{{ item }}"
+       loop: "{{ users }}"
+       
 
      - name: lin in file
        lineinfile:
