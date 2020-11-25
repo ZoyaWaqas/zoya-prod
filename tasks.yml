@@ -24,7 +24,16 @@
         - start httpd
         - enabled firewalld
         - disabling selinux
-   
+     - name: create file
+       file:
+        path: /tmp/welcome
+        state: touch
+
+     - name: copy file
+       copy:
+        src: /tmp/welcome
+        dest: /tmp/ "{{item }}"
+       loop: "{{ users }}" 
 
  
 
