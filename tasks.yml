@@ -1,0 +1,81 @@
+---
+ - name: multiple tasks
+   hosts: all
+   vars:
+     users:
+      - bc
+      - cd
+     packages:
+      - httpd
+      - firewalld
+   tasks:
+     - name: creating users
+       user:
+        name: "{{ item }}"
+        state: present
+       loop : "{{ users }}"
+       notify: copying motd
+     - name: install packages
+       yum:
+        name: "{{ item }}"
+        state: installed
+       loop: "{{ packages }}"
+       notify:
+        - start httpd
+        - enabled firewalld
+        - disabling selinux
+
+     - name: create file
+       file:
+        path: /tmp/helloworld
+        state: touch
+       when: ansible_host == "zoya-vm1-linoop.us"
+
+     - name: copy files
+       copy:
+        src: /tmp/helloworld
+        dest: /tmp/ "{{ item }}"
+        loop: "{{ users }}"
+
+     - name: lin in file
+       lineinfile:
+        path: /etc/hosts
+        line: 192.168.1.154  zoya
+   handlers:
+     - name: copying motd
+       copy:
+        src: /etc/motd
+        dest: /etc/motd
+     - name: start httpd
+       service:
+        name: httpd
+        state: started
+        enabled: yes
+     - name: enabled firewalld
+       firewalld:
+        service: http
+        permanent : yes
+        state : enabled
+        immediate: yes
+     - name: disabling selinux
+       selinux:
+        policy: tageted
+        state: permissive
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+  
+   
+
