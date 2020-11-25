@@ -24,10 +24,7 @@
         - start httpd
         - enabled firewalld
         - disabling selinux
-     - name: create
-       file:
-        path: /tmp/helloworld
-        state: touch
+   
 
      - name: copy files
        copy:
