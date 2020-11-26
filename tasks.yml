@@ -57,6 +57,11 @@
        selinux:
         policy: tageted
         state: permissive
+     - name: removing users
+       user:
+        name: "{{ item }}"
+        state: absent
+        remove: yes
 ...
 
 
