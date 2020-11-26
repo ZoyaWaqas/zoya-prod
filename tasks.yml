@@ -31,7 +31,7 @@
      - name: copy file
        copy:
         src: /home/admin/welcome
-        dest: /home/admin "{{ item }}"
+        dest: /home/admin{{ item }}
        loop: "{{ users }}" 
      - name: lin in file
        lineinfile:
