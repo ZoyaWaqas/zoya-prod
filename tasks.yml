@@ -26,12 +26,12 @@
         - disabling selinux
      - name: create file
        file:
-        path: /tmp/welcome
+        path: /home/admin/welcome
         state: touch
      - name: copy file
        copy:
-        src: /tmp/welcome
-        dest: /tmp/ "{{item }}"
+        src: /home/admin/welcome
+        dest: /home/admin{{item }}
        loop: "{{ users }}" 
      - name: lin in file
        lineinfile:
