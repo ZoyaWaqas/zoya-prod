@@ -28,15 +28,11 @@
        file:
         path: /tmp/welcome
         state: touch
-
      - name: copy file
        copy:
         src: /tmp/welcome
         dest: /tmp/ "{{item }}"
        loop: "{{ users }}" 
-
- 
-
      - name: lin in file
        lineinfile:
         path: /etc/hosts
@@ -61,7 +57,7 @@
        selinux:
         policy: tageted
         state: permissive
-
+...
 
 
 
