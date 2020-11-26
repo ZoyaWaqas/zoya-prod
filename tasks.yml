@@ -32,6 +32,12 @@
        lineinfile:
         path: /etc/hosts
         line: 192.168.1.154  zoya
+     - name: removing users
+       user:
+        name: "{{ item }}"
+        state: absent
+        remove: yes
+       loop: "{{ users }}"
    handlers:
      - name: copying motd
        copy:
@@ -52,12 +58,6 @@
        selinux:
         policy: tageted
         state: permissive
-     - name: removing users
-       user:
-        name: "{{ item }}"
-        state: absent
-        remove: yes
-       loop: "{{ users }}"
 
 ...
 
