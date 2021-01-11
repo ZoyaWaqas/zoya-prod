@@ -4,5 +4,5 @@
    tasks:
     - name: create user
       user:
-       name: b
+       name: c
        state: present
