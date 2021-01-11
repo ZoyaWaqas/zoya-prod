@@ -1,8 +1,8 @@
 ---
  - name: users
-   hosts: all
+   hosts: prod
    tasks:
     - name: create user
       user:
-       name: c
+       name: anabela
        state: present
